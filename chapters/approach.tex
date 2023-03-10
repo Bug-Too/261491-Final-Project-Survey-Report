@@ -5,7 +5,7 @@
 \fi
 }
 
-ในบทนี้จะกล่าวถึงหลักการ และการออกแบบระบบ
+ในบทนี้จะกล่าวถึงหลักการ และการออกแบบระบบ โดยการออกแบบเกมได้ใช้ Game Design Template Master Doc \cite{GDD1, GDD2} เป็นต้นแบบแบบหลวม ๆ ซึ่งการพัฒนาจะเป็นแบบ iterative process และมีการสร้าง prototype เพื่อทดสอบวิธีการเล่นและกลไกว่าเป็นไปตามที่ต้องการหรือไม่
 
 \makeatletter
 
@@ -19,79 +19,150 @@
 % \titleformat{\section}{\normalfont\bfseries}{\thesection}{1em}{}
 % \titlespacing*{\section}{0pt}{10ex}{0pt}
 
-\section{Alice in Wonderland}
+\section{แนวคิดหลักของเกม (Core)}
 
-\begin{figure}
-\begin{center}
-\includegraphics{800px-Briny_Beach.jpg}
-\end{center}
-\caption[Poem]{The Walrus and the Carpenter}
-\label{fig:walrus}
-\end{figure}
+\subsection{Design Pillars}
 
-\subsection{The Black Kitten}
-  One thing was certain, that the WHITE kitten had had nothing to
-do with it:---it was the black kitten's fault entirely~\cite{aiw}.  For the
-white kitten had been having its face washed by the old cat for
-the last quarter of an hour (and bearing it pretty well,
-considering); so you see that it COULDN'T have had any hand in
-the mischief.
+เป็นรากฐานของเกมที่จะไม่เปลี่ยนแปลง และการออกแบบส่วนต่าง ๆ ของเกมควรสอดรับกับสิ่งเหล่านี้ \cite{GDD1}
 
-  The way Dinah washed her children's faces was this:  first she
-held the poor thing down by its ear with one paw, and then with
-the other paw she rubbed its face all over, the wrong way,
-beginning at the nose:  and just now, as I said, she was hard at
-work on the white kitten, which was lying quite still and trying
-to purr---no doubt feeling that it was all meant for its good.
+\begin{enumerate}
+  \item เกมสยองขวัญที่ผู้เล่นต้องช่วยกันถึงจะผ่านไปได้
+  \item อีกคนนึงเห็นปีศาจ อีกคนนึงไม่เห็น
+  \item เกมมีความท้าทายในทุกครั้งที่เล่น สามารถเล่นซ้ำได้โดยไม่รู้สึกเบื่อ
+\end{enumerate}
 
-  But the black kitten had been finished with earlier in the
-afternoon, and so, while Alice was sitting curled up in a corner
-of the great arm-chair, half talking to herself and half asleep,
-the kitten had been having a grand game of romps with the ball of
-worsted Alice had been trying to wind up, and had been rolling it
-up and down till it had all come undone again; and there it was,
-spread over the hearth-rug, all knots and tangles, with the
-kitten running after its own tail in the middle.
+\subsection{Game Loops}
 
-\subsection{The Reproach}
+ผู้เล่นทั้งสองต้องช่วยกันทำลายวงแหวนเวทย์มนต์ตามที่ต่าง ๆ พร้อมเอาชีวิตรอดจากปีศาจ
 
-  `Oh, you wicked little thing!' cried Alice, catching up the
-kitten, and giving it a little kiss to make it understand that it
-was in disgrace.  `Really, Dinah ought to have taught you better
-manners!  You OUGHT, Dinah, you know you ought!' she added,
-looking reproachfully at the old cat, and speaking in as cross a
-voice as she could manage---and then she scrambled back into the
-arm-chair, taking the kitten and the worsted with her, and began
-winding up the ball again.  But she didn't get on very fast, as
-she was talking all the time, sometimes to the kitten, and
-sometimes to herself.  Kitty sat very demurely on her knee,
-pretending to watch the progress of the winding, and now and then
-putting out one paw and gently touching the ball, as if it would
-be glad to help, if it might.
+\subsection{แรงจูงใจในการเล่น (Player Motivation)}
 
-  `Do you know what to-morrow is, Kitty?' Alice began.  `You'd
-have guessed if you'd been up in the window with me---only Dinah
-was making you tidy, so you couldn't.  I was watching the boys
-getting in stick for the bonfire---and it wants plenty of
-sticks, Kitty!  Only it got so cold, and it snowed so, they had
-to leave off.  Never mind, Kitty, we'll go and see the bonfire
-to-morrow.'  Here Alice wound two or three turns of the worsted
-round the kitten's neck, just to see how it would look:  this led
-to a scramble, in which the ball rolled down upon the floor, and
-yards and yards of it got unwound again.
+ผู้เล่นมีแรงจูงใจในการเล่นเพื่อเอาชนะปีศาจ และเมื่อเล่นต่อไปหลังจากจบหนึ่งเกมหรือขณะเล่นอยู่ เกมจะยากขึ้นและบีบให้ผู้เล่นเล่นในแบบที่ยังไม่เคยเล่นมาก่อน
 
-  `Do you know, I was so angry, Kitty,' Alice went on as soon as
-they were comfortably settled again, `when I saw all the mischief
-you had been doing, I was very nearly opening the window, and
-putting you out into the snow!  And you'd have deserved it, you
-little mischievous darling!  What have you got to say for
-yourself?  Now don't interrupt me!' she went on, holding up one
-finger.  `I'm going to tell you all your faults.  Number one:
-you squeaked twice while Dinah was washing your face this
-morning.  Now you can't deny it, Kitty:  I heard you!  What that
-you say?' (pretending that the kitten was speaking.)  `Her paw
-went into your eye?  Well, that's YOUR fault, for keeping your
-eyes open---if you'd shut them tight up, it wouldn't have
-happened.  Now don't make any more excuses, but listen!  Number
-two:  you pulled Snowdrop away by the tail just as I had put down
-the saucer of milk before her!  What, you were thirsty, were you?
+\section{เนื้อหา}
+
+\subsection{โดยรวม}
+
+เกมนี้เป็นเกมสยองขวัญที่อาศัยความร่วมมือของผู้เล่นสองคน เป็นเกมมุมมองบุคคลที่หนึ่ง งานภาพเป็นแนว 3D Photorealistic หนึ่งเกมสามารถเล่นจบภายในเวลา 30-40 นาที
+
+\subsection{เนื้อเรื่อง}
+
+เกมนี้มีเนื่อเรื่องและสถานที่อยู่ในยุโรปยุคกลาง ตามความเชื่อที่ว่า ปีศาจสามารถปลอมแปลงเป็นสัตว์ชนิดหนึ่ง อาศัยอยู่ในป่ารกร้าง หน้าที่ของผู้เล่นคือ ต้องไปปราบปีศาจร้ายและทำให้ผู้คนปลอดภัย
+
+\subsection{ตัวละคร}
+
+ผู้เล่นสามารถเลือกเล่นเป็นแม่ชี (Nun) หรือนายพราน (Hunter) ซึ่งแต่ละตัวละครมีความสามารถแตกต่างกันไป
+
+\subsubsection{ตัวละครนายพราน (Hunter)}
+
+\paragraph{ความสามารถ}
+\begin{itemize}
+  \item สามารถปกป้องแม่ชีจากกับดักในป่าได้
+  \item สามารถรักษาตัวเองและแม่ชี โดยใช้สมุนไพรในป่า
+  \item มีแผนที่ใช้นำทาง สามารถทำเครื่องหมายบนแผนที่ได้
+\end{itemize}
+
+\paragraph{การออกแบบ}
+\begin{itemize}
+  \item เป็นชาวยุโรปผิวขาว
+  \item มีหนวดเคราและผมสีดำยาว
+  \item อายุประมาณ 40 ปี
+  \item สวมชุดนายพราน
+\end{itemize}
+
+\subsubsection{ตัวละครแม่ชี (Nun)}
+
+\paragraph{ความสามารถ}
+\begin{itemize}
+  \item สามารถป้องกันการโจมตีจากปีศาจ
+  \item สามารถทำลายวงแหวนเวทย์มนต์ได้
+  \item มีสายตาที่แย่ไม่สามารถเห็นได้ในระยะไกล
+  \item แต่สามารถเห็นปีศาจในระยะไกล และรู้ว่าปีศาจคือสัตว์ตัวไหน
+  \item สามารถรับรู้ได้ถึงวงแหวนเวทย์มนต์จากระยะไกล
+\end{itemize}
+
+\paragraph{การออกแบบ}
+\begin{itemize}
+  \item เป็นชาวยุโรปผิวขาว
+  \item สวมชุดแม่ชี
+  \item อายุประมาณ 35 ปี
+\end{itemize}
+
+\subsubsection{ปีศาจ}
+
+ปีศาจเป็นสัตว์หน้าตาดูปกติ อาศัยอยู่ในป่า แฝงตัวอยู่ตามฝูงสัตว์ปกติอื่น ๆ สัตว์ที่เป็นปีศาจได้ ประกอบไปด้วย
+\begin{itemize}
+  \item กระต่าย
+  \item สุนัขจิ้งจอก
+  \item หมาป่า
+  \item หมู
+\end{itemize}
+
+การที่ปีศาจหน้าตาดูปกติและนายพรานไม่สามารถรู้ได้ว่าสัตว์ตัวไหนเป็นตัวร้ายท่ามกลางสัตว์ปกติในเกม ทำให้ต้องมีการสื่อสารกันระหว่างผู้เล่น ทำให้เกิดอารมณ์ระแวง เพิ่มความตึงเครียด และความท้าทายให้กับเกม
+
+\subsection{ฉาก}
+
+สถานที่ของเกม คือ ป่ารกร้างในยุโรปยุคกลาง ต้นไม้ในฉากจะไม่มีใบหรือใบแห้งแร้งมาก บนพื้นจะเต็มไปด้วยหญ้าแห้งและใบไม้แห้ง ให้อารมณ์ความรู้สึกที่โดดเดี่ยว ไร้ชีวิตชีวา ทั้งในยามกลางวันและกลางคืน ต้นไม้ประกอบฉากต้องเป็นต้นไม้ในป่ายุโรป เช่น European Hornbeam หรือ Black Alder ภูมิประเทศเป็นพื้นที่ราบมีเนินและแหล่งน้ำบ้าง เพื่อเพิ่มความน่าสนใจและมีจุดสังเกตุให้ผู้เล่น
+
+ฉากของเกมควรมีขนาดที่ใหญ่เหมาะสมที่ให้ผู้เล่นสามารถสำรวจสถานที่ทั้งหมดได้ภายในเวลาไม่เกิน 20 นาที จากระยะเวลาการเล่นทั้งหมด 30-40 นาที
+
+\subsection{เสียงและดนตรีประกอบ}
+
+ดนตรีประกอบเป็นดนตรีตะวันตก ใช้เครื่องดนตรียุโรปยุคกลางผสมสมัยคลาสสิค จะต้องมีดนตรีในช่วงที่ต่อสู้กับปีศาจ ช่วงที่กำลังทำลายวงแหวนเวทย์มนต์ และช่วงสำคัญอื่น ๆ โดยรวมแล้วดนตรีประกอบต้องมีอารมณ์ที่ลุ้นระทึก แต่ไม่ทำลายบรรยากาศที่เหงา น่ากลัว ของเกม อาจมีเสียงดนตรีอื่นที่ใช้สร้างบรรยากาศ เช่น เสียงดนตรี Drone เสียงโน้ตเปียโนที่เล่นแบบย้อนกลับ เป็นต้น
+
+เสียงประกอบที่จำเป็นต้องมี คือ เสียงเดินของตัวละคร เสียงวิ่งของตัวละคร เสียงหอบของผู้เล่น
+เสียงเจ็บและตายของตัวละคร เสียงร้องปกติของสัตว์
+
+\section{คุณสมบัติ (Features)}
+
+\subsection{การสร้างฉาก}
+
+การสร้างฉากในการเล่นแต่ละครั้ง จะเปลี่ยนตำแหน่งและจำนวนของสมุนไพร ตำแหน่งของกับดัก และตำแหน่งของวงแหวนเวทย์มนต์ รวมถึงในการเล่นแต่ละครั้ง ปีศาจจะอยู่ในร่างสัตว์ที่ไม่เหมือนกัน ทั้งนี้การจัดวางสิ่งของต้องมีความสมดุล มีจำนวนที่เหมาะสมที่สามารถเล่นผ่านไปได้อย่างสนุก ไม่ควรกองกันอยู่ที่เดียวกันเยอะเกินไปเพราะจะทำให้เกมจบเร็วขึ้น ไม่สนุก การเปลี่ยนตำแหน่งและจำนวนของสิ่งของจะเพิ่มความท้าทาย และความยากในการเล่นแต่ละรอบได้ในแบบที่ไม่ซ้ำกัน  
+
+\subsection{กลางวันและกลางคืน}
+
+ช่วงเวลากลางวันจะเป็นช่วงเย็น ตอนกลางวันผู้เล่นจะไม่สามารถรู้ว่าปีศาจคือสัตว์ตัวไหน แต่ปีศาจสามารถปรากฏตัวได้อยู่ วงแหวนเวทย์จะยังไม่ปรากฏ ช่วงกลางวันมีไว้เพื่อให้ผู้เล่นสำรวจสถานที่ที่น่าสนใจและเก็บรวบรวมยา สามารถใช้โอกาสนี้สังเกตุสัตว์ที่อยู่ในป่า ปลดกับดัก และทำสัญลักษณของจุดที่สนใจในแผนที่ (Farm and Explore)
+
+ช่วงเวลากลางคืนเป็นช่วงที่ปีศาจสามารถทำร้ายเราได้ วงแหวนเวทย์มนต์จะปรากฏขึ้น ผู้เล่นต้องทำหน้าที่ช่วยกันทำลายวงแหวนเวทย์และเอาตัวรอดจากปีศาจ ช่วงนี้จะเป็นช่วงสุดท้ายของเกม (Climax)
+
+ทั้งสองช่วงจะมีการเปลี่ยนผ่านที่เหมือนกับโลกจริง คือ ดวงอาทิตย์เคลื่อนที่ลาลับขอบฟ้า ทั้งสองช่วงกินเวลาเท่ากัน คือ 20 นาที
+
+\subsection{การสิ้นสุดเกม}
+
+ผู้เล่นสามารถเอาชนะปีศาจได้เมื่อทำลายวงแหวนเวทย์มนต์ได้ครบทุกอัน และจะแพ้เมื่อผู้เลนคนใดคนนึงเสียชีวิตหรือทั้งคู่ไม่สามารถทำลายวงแหวนเวทย์มนต์ในเวลาที่กำหนดได้
+
+\subsection{การทำลายวงแหวนเวทย์มนต์}
+
+ผู้เล่นสามารถทำลายวงแหวนเวทย์มนต์โดยใช้ความสามารถพิเศษของแม่ชี การทำลายวงแหวนใช้เวลาไม่เกิน 1 นาที และจะเพิ่มความดุร้ายของปีศาจในรูปแบบของการเพิ่มความถี่ในการปรากฎตัว เพื่อให้เกิดความตึงเครียด และเพิ่มความเข้มข้น
+
+\subsection{การเดินและการเคลื่อนไหวของตัวละคร}
+
+\subsubsection{การเคลื่อนไหวของผู้เล่น}
+
+ผู้เล่นสามารถเคลื่อนที่ด้วยการเดิน กระโดด และวิ่ง โดยการวิ่งไม่สามารถวิ่งถอยหลังได้ สามารถวิ่งแล้วหันหน้ากลับมาดูข้างหลังเพียงชั่วคราวเท่านั้น
+
+\subsubsection{การเคลื่อนไหวของสัตว์}
+
+สัตว์เดินและวิ่งด้วยความเร็วธรรมชาติของมันขึ้นอยู่กับชนิด จะอยู่กันเป็นฝูง ตัวปีศาจมีระบบ Navigation ที่ทำให้สามารถเคลื่อนที่ไปหาหรือติดตามผู้เล่นได้
+
+\subsection{การต่อสู้}
+
+การต่อสู้สำหรับผู่เล่นมีไว้เพื่อป้องกันตัวเองจากการโจมตีของปีศาจเท่านั้น ไม่ได้มีไว้เพื่อฆ่าปีศาจ ผู้ที่เล่นเป็นแม่ชีเท่านั้นที่สามารถป้องกันการโจมตีของปีศาจได้ โดยหลังจากผู้เล่นป้องกันการโจมตี เขาจะบาดเจ็บ เสีย HP ผู้เล่นสามารถป้องกันการโจมตีได้เรื่อย ๆ จนกว่าจะตาย โดยปีศาจจะโจมตีทีละครั้งเท่านั้น ความถี่ในการโจมตีขึ้นอยู่กับจำนวนวงแหวนเวทย์มนต์ที่ผู้เล่นได้ทำลายไป
+
+การโจมตีของปีศาจ ปีศาจจะเข้าหาผู้เล่นแบบลอบเร้น (Stealth) และจะโจมตีโดยการปล่อยพลังเวทย์ เสียงดนตรีและเสียงประกอบจะดังขึ้นตอนนี้ ผู้เล่นสามารถป้องกันการโจมตีได้ ถ้าหากป้องกันได้ก่อนที่ปีศาจจะโจมตี จะไม่ได้รับ Damage แต่ถ้าเริ่มโจมตีแล้วจะลด Damage เพียงกึ่งหนึ่ง
+
+\subsection{การรักษา}
+
+ผู้เล่นที่เล่นเป็นนายพรานสามารถรักษาผู้เล่นได้ ผู้เล่นคนนี้ต้องเก็บสมุนไพรในป่า เพื่อนำมารักษาตัวเองและผู้เล่นอีกคนหนึ่ง
+
+\subsection{กับดัก}
+
+กับดักในป่าสามารถทำให้แม่ชีบาดเจ็บได้เพียงแค่เดินเหยียบ ผู้ที่เล่นเป็นนายพรานสามารถมองเห็นและปลดกับดักได้ นายพรายไม่สามารถถูกกับดักทำร้ายได้
+
+% \begin{figure}
+% \begin{center}
+% \includegraphics{800px-Briny_Beach.jpg}
+% \end{center}
+% \caption[Poem]{The Walrus and the Carpenter}
+% \label{fig:walrus}
+% \end{figure}
