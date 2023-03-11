@@ -22,6 +22,7 @@
 
 %% Add bookmarks and hyperlinks in the document.
 \PassOptionsToPackage{hyphens}{url}
+\usepackage{url}
 \usepackage[colorlinks=true,allcolors=Blue4,citecolor=red,linktoc=all]{hyperref}
 \def\UrlLeft#1\UrlRight{$#1$}
 
@@ -43,7 +44,6 @@
 %% the tolerance to 9999
 % \tolerance=9999
 
-\bibliographystyle{plain}
 % \bibliographystyle{IEEEbib}
 
 % \renewcommand{\topfraction}{0.85}
@@ -83,11 +83,13 @@
 \fi
 
 \bibliography{report}
+\bibliographystyle{plainurl}
+\end{thebibliography}
 
 \ifproject
 \normalspacing
-\appendix
-\include{chapters/appendix}
+% \appendix
+% \include{chapters/appendix}
 
 %% Display glossary (optional) -- need glossary option.
 \ifglossary\glossarypage\fi
@@ -97,10 +99,20 @@
 
 \begin{biosketch}
 \begin{center}
-  \includegraphics[width=1.5in]{mugshot.jpg}
+  \includegraphics[width=1.5in]{./img/phu.png}
 \end{center}
-Your biosketch goes here. Make sure it sits inside
-the \texttt{biosketch} environment.
+\textbf{นายธนดล เดชประภากร} Tanadol Deachprapakorn \\
+\textbf{รหัสนักศึกษา}: 630610734 \\
+\textbf{อีเมล}: \href{mailto:tanadol_de@cmu.ac.th}{tanadol\_de@cmu.ac.th}
 \end{biosketch}
+
+\begin{biosketch}
+  \begin{center}
+    \includegraphics[width=1.5in]{./img/rich.png}
+  \end{center}
+  \textbf{นายภูริช สีนวลแล} Purich Seenaullae \\
+  \textbf{รหัสนักศึกษา}: 630610752 \\
+  \textbf{อีเมล}: \href{mailto:purich_s@cmu.ac.th}{purich\_s@cmu.ac.th}
+  \end{biosketch}
 \fi % \ifproject
 \end{document}
