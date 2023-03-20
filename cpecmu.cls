@@ -37,7 +37,7 @@
 \DeclareOption{isne}{\cpefalse\englishtrue}
 \ExecuteOptions{cpe}
 \newif\ifproject
-\DeclareOption{project}{\projecttrue}
+\DeclareOption{project}{\projectfalse}
 \DeclareOption{survey}{\projectfalse}
 \ExecuteOptions{project}
 \DeclareOption{10pt}{%
